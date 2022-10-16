@@ -1,0 +1,8 @@
+@import "./base.css";
+
+#app {
+  -webkit-user-select: none;
+  user-select: none;
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
+  font-weight: normal;
+}
