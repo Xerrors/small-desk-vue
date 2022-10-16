@@ -31,7 +31,7 @@ onMounted(() => {
 
 <template>
   <div>
-    <div class="time-container">
+    <div class="time-container fullscreen">
       <div class="time">
         <span class="hour">{{ current.hour }}</span>
         <!-- TODO: 添加闪烁 -->
@@ -48,26 +48,16 @@ onMounted(() => {
 </template>
   
 <style scoped>
-.time-container {
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  background: black;
-}
-
 .time {
   width: 100%;
   height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 35vw;
-  font-weight: 700;
-  color: #fff;
 }
 .colon {
   position: relative;
-  width: 8vw;
+  width: 10vw;
   height: 100%;
   display: flex;
   gap: 8vw;
@@ -84,21 +74,43 @@ onMounted(() => {
   background: #fff;
 }
 
-/* @media screen and (max-width: 768px) {
+.hour, .minute {
+  width: 40vw;
+  height: 40vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #181a1c;
+  border-radius: 4vw;
+  font-size: 30vw;
+  font-weight: 700;
+  color: #fff;
+}
+
+@media screen and (max-width: 768px) {
   .time {
-    font-size: 100px;
+    flex-direction: column;
   }
-
+  .hour, .minute {
+    width: 40vh;
+    height: 40vh;
+    font-size: 30vh;
+    border-radius: 4vh;
+  }
   .colon {
-    width: 2rem;
-    gap: 1rem;
+    flex-direction: row;
+    width: 100%;
+    height: 10vh;
+    gap: 8vh;
   }
-
+  
   .colon-dot {
-    width: 0.8rem;
-    height: 0.8rem;
+    width: 4vh;
+    height: 4vh;
+    border-radius: 50%;
+    background: #fff;
   }
-} */
+}
 
 @keyframes blink {
   0% {
