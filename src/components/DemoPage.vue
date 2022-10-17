@@ -5,19 +5,21 @@
 
 <template>
   <div class="fullscreen demo-container">
-    <p>好好学习</p>
-    <p>天天向上</p>
+    <p>热烈庆祝</p>
+    <p>中国共产党第二十次全国代表大会</p>
+    <p>胜利召开</p>
   </div>
 </template>
 
 <style scoped>
 .demo-container {
   flex-direction: column;
-  font-size: 10vw;
+  font-size: 5vw;
   padding: 4rem;
+  text-align: center;
 
-  color:rgb(16, 13, 30);
-  background-color: rgb(213, 250, 183);
+  color:#f9f8d0;
+  background-color: #db2300;
   font-weight: bold;
 }
 </style>

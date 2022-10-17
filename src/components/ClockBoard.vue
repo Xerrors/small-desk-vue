@@ -30,27 +30,23 @@ onMounted(() => {
 </script>
 
 <template>
-  <div>
-    <div class="time-container fullscreen">
-      <div class="time">
-        <span class="hour">{{ current.hour }}</span>
-        <!-- TODO: 添加闪烁 -->
-        <span class="colon">
-          <div class="colon-dot"></div>
-          <div class="colon-dot"></div>
-        </span>
-        <span class="minute">{{ current.minute }}</span>
-        <!-- <span>:</span>
-        <span class="second">{{ current.second }}</span> -->
-      </div>
+  <div class="time-container fullscreen">
+    <div class="time">
+      <span class="hour">{{ current.hour }}</span>
+      <!-- TODO: 添加闪烁 -->
+      <span class="colon">
+        <div class="colon-dot"></div>
+        <div class="colon-dot"></div>
+      </span>
+      <span class="minute">{{ current.minute }}</span>
+      <!-- <span>:</span>
+      <span class="second">{{ current.second }}</span> -->
     </div>
   </div>
 </template>
   
 <style scoped>
 .time {
-  width: 100%;
-  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -58,7 +54,6 @@ onMounted(() => {
 .colon {
   position: relative;
   width: 10vw;
-  height: 100%;
   display: flex;
   gap: 8vw;
   flex-direction: column;

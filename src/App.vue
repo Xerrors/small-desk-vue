@@ -4,6 +4,9 @@ import { defineAsyncComponent, reactive, ref } from 'vue'
 // 需要加载的组件集合
 const components = ref(new Map())
 const component_list = ["ClockBoard", "DemoPage", "UpperPage"]
+const component_time = {
+  ClockBoard: 30000,
+}
 const curComp = reactive({
   compIndex: 0,
   compName: component_list[0]
@@ -20,15 +23,16 @@ const loadAllComponents = () => {
 
 const switchComp = () => {
   curComp.compIndex = (curComp.compIndex + 1) % component_list.length
+  curComp.compName = component_list[curComp.compIndex]
+  clearInterval(interval)
+  interval = setInterval(switchComp, component_time[curComp.compName] || 10000)
 }
 
 // 加载所有组件
 loadAllComponents()
 
-// 每10秒切换一次组件
-setInterval(() => {
-  switchComp()
-}, 10000)
+// 自动切换组件
+let interval = setInterval(switchComp, component_time[curComp.compName] || 10000)
 
 const debug = () => {
   switchComp()
@@ -39,9 +43,10 @@ const debug = () => {
 
 <template>
   <div class="main-container">
-    <transition name="fade">
+    <!-- <transition name="fade">
       <component :is="components.get(curComp.compIndex)" class="board"></component>
-    </transition>
+    </transition> -->
+    <component :is="components.get(curComp.compIndex)" class="board"></component>
   </div>
   <button class="debug" @click="debug">
     debug
@@ -52,6 +57,7 @@ const debug = () => {
 .main-container {
   overflow: scroll;
   max-height: 100vh;
+  background-color: black;
 }
 
 /* .board {
@@ -77,10 +83,4 @@ const debug = () => {
   opacity: 0;
 }
 
-.debug {
-  position: fixed;
-  bottom: 0;
-  right: 0;
-  z-index: 999;
-}
 </style>
