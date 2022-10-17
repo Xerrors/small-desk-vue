@@ -14,8 +14,8 @@
 <style scoped>
 .demo-container {
   flex-direction: column;
-  font-size: 5vw;
-  padding: 4rem;
+  font-size: 3rem;
+  padding: 2rem;
   text-align: center;
 
   color:#f9f8d0;

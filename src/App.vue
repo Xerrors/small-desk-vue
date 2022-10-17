@@ -3,9 +3,11 @@ import { defineAsyncComponent, reactive, shallowRef } from 'vue'
 
 // 需要加载的组件集合
 const components = shallowRef(new Map())
-const component_list = ["ClockBoard", "DemoPage", "UpperPage"]
+const component_list = ["ClockBoard", "DemoPage", "UpperPage", "AppKit"]
 const component_time = {
   ClockBoard: 30000,
+  DemoPage: 3000,
+  AppKit: 3000
 }
 const curComp = reactive({
   compIndex: 0,
@@ -21,12 +23,13 @@ const loadAllComponents = () => {
   }
 }
 
-const switchComp = (t) => {
+const switchComp = (t="increase") => {
   const num = t === "increase" ? 1 : -1
   curComp.compIndex = (curComp.compIndex + component_list.length + num) % component_list.length
   curComp.compName = component_list[curComp.compIndex]
   clearInterval(interval)
   interval = setInterval(switchComp, component_time[curComp.compName] || 10000)
+  console.log(curComp.compName)
 }
 
 // 加载所有组件
@@ -49,8 +52,10 @@ let interval = setInterval(switchComp, component_time[curComp.compName] || 10000
     </transition> -->
     <component :is="components.get(curComp.compIndex)" class="board"></component>
   </div>
-  <button class="debug" @click="switchComp('decrease')" style="left: 0; top: 0;"> debug </button>
-  <button class="debug" @click="switchComp('increase')"> debug2 </button>
+  <div class="debug auto-flex" >
+    <button @click="switchComp('decrease')"> debug1 </button>
+    <button @click="switchComp('increase')"> debug2 </button>
+  </div>
 </template>
 
 <style scoped>

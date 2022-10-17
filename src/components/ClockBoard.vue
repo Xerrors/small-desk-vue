@@ -30,30 +30,26 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="time-container fullscreen">
-    <div class="time">
+  <div class="time-container fullscreen auto-flex">
       <span class="hour">{{ current.hour }}</span>
       <!-- TODO: 添加闪烁 -->
-      <span class="colon">
+      <span class="colon auto-flex">
         <div class="colon-dot"></div>
         <div class="colon-dot"></div>
       </span>
       <span class="minute">{{ current.minute }}</span>
       <!-- <span>:</span>
       <span class="second">{{ current.second }}</span> -->
-    </div>
   </div>
 </template>
   
 <style scoped>
-.time {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.time-container {
+  padding: 2rem;
 }
 .colon {
   position: relative;
-  width: 10vw;
+  width: 10%;
   display: flex;
   gap: 8vw;
   flex-direction: column;
@@ -70,12 +66,12 @@ onMounted(() => {
 }
 
 .hour, .minute {
-  width: 40vw;
-  height: 40vw;
+  width: 42%;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #181a1c;
+  background-color: var(--vt-c-black);
   border-radius: 4vw;
   font-size: 30vw;
   font-weight: 700;
@@ -83,19 +79,16 @@ onMounted(() => {
 }
 
 @media screen and (max-width: 768px) {
-  .time {
-    flex-direction: column;
-  }
   .hour, .minute {
-    width: 40vh;
-    height: 40vh;
+    width: 100%;
+    height: 42%;
     font-size: 30vh;
     border-radius: 4vh;
   }
   .colon {
     flex-direction: row;
     width: 100%;
-    height: 10vh;
+    height: 10%;
     gap: 8vh;
   }
   
