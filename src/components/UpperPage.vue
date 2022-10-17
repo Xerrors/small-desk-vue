@@ -16,7 +16,7 @@ calcDays()
 
 <template>
   <div class="fullscreen pastdays">
-    <div>已经谈恋爱 <span class="days">{{ days }}</span> 天啦</div>
+    <div>已经 <span class="days">{{ days }}</span> 天啦</div>
   </div>
 </template>
 
