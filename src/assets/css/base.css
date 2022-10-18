@@ -35,6 +35,10 @@
 
   --section-gap: 160px;
 }
+
+:root {
+  --max-side: max(100vw, 100vh);
+}
 /* 
 @media (prefers-color-scheme: dark) {
   :root {

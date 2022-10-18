@@ -24,11 +24,17 @@
     top: 0;
     z-index: 999;
     background: red;
+    opacity: 0.3;
+}
+
+.hide-debug {
     opacity: 0;
 }
+
 .debug > * {
     height: 100%;
     width: 100%;
+    font-size: 2rem;
 }
 
 @media screen and (max-width: 768px) {

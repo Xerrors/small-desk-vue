@@ -30,7 +30,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="time-container fullscreen auto-flex">
+  <div class="time-container fullscreen auto-flex colorful-bg">
       <span class="hour">{{ current.hour }}</span>
       <!-- TODO: 添加闪烁 -->
       <span class="colon auto-flex">
@@ -71,7 +71,7 @@ onMounted(() => {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: var(--vt-c-black);
+  /* background-color: var(--vt-c-black-soft); */
   border-radius: 4vw;
   font-size: 30vw;
   font-weight: 700;
