@@ -1,17 +1,20 @@
 <script setup>
-import { computed, defineAsyncComponent, reactive, shallowRef } from 'vue'
+import { computed, defineAsyncComponent, reactive, ref, shallowRef } from 'vue'
+import { useSwipe } from '@vueuse/core'
 
 // 需要加载的组件集合
 const components = shallowRef(new Map())
 const component_list = ["ClockBoard", "UpperPage"] // , "AppKit"]
+const component_keep_alive = ["DemoPage"]
+const component_disable_debug = [] // ["DemoPage"]
 const component_time = {
   ClockBoard: 30000,
-  DemoPage: 3000,
   AppKit: 3000
 }
 const curComp = reactive({
   compIndex: 0,
   compName: component_list[0],
+  enable_debug: computed(() => !component_disable_debug.includes(curComp.compName)),
   stopAutoSwitch: false
 })
 
@@ -51,6 +54,18 @@ const stopAutoSwitch = () => {
   }
 }
 
+// const debug = ref(null)
+// https://github.com/vueuse/vueuse/blob/main/packages/core/useSwipe/demo.vue
+// const { isSwiping, direction } = useSwipe(debug, {
+//   onSwipeEnd: () => {
+//     if (direction.value === 'left') {
+//       switchComp("increase")
+//     } else if (direction.value === 'right') {
+//       switchComp("decrease")
+//     }
+//   }
+// })
+
 // 加载所有组件
 loadAllComponents()
 
@@ -64,9 +79,11 @@ timer.timerId = setInterval(switchComp, timer.timerTime)
     <!-- <transition name="fade">
       <component :is="components.get(curComp.compIndex)" class="board"></component>
     </transition> -->
-    <component :is="components.get(curComp.compIndex)" class="board"></component>
+    <KeepAlive :include="component_keep_alive">
+      <component :is="components.get(curComp.compIndex)" class="board"></component>
+    </KeepAlive>
   </div>
-  <div class="debug auto-flex hide-debug" >
+  <div class="debug auto-flex hide-debug" v-if="curComp.enable_debug" ref="debug">
     <button @click="switchComp('decrease')"> debug1 </button>
     <button @click="stopAutoSwitch"> debug2 </button>
     <button @click="switchComp('increase')"> debug3 </button>

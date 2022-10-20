@@ -30,14 +30,14 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="time-container fullscreen auto-flex colorful-bg">
-      <span class="hour">{{ current.hour }}</span>
+  <div class="time-container fullscreen auto-flex">
+      <span class="time-panel hour">{{ current.hour }}</span>
       <!-- TODO: 添加闪烁 -->
       <span class="colon auto-flex">
         <div class="colon-dot"></div>
         <div class="colon-dot"></div>
       </span>
-      <span class="minute">{{ current.minute }}</span>
+      <span class="time-panel minute">{{ current.minute }}</span>
       <!-- <span>:</span>
       <span class="second">{{ current.second }}</span> -->
   </div>
@@ -65,21 +65,24 @@ onMounted(() => {
   background: #fff;
 }
 
-.hour, .minute {
+.time-panel {
   width: 42%;
   height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  /* background-color: var(--vt-c-black-soft); */
-  border-radius: 4vw;
   font-size: 30vw;
   font-weight: 700;
   color: #fff;
 }
 
+.time-container:not(.colorful-bg) .time-panel {
+  background-color: var(--vt-c-black-soft);
+  border-radius: 4vw;
+}
+
 @media screen and (max-width: 768px) {
-  .hour, .minute {
+  .time-panel {
     width: 100%;
     height: 42%;
     font-size: 30vh;
