@@ -1,5 +1,5 @@
 <script setup>
-import ClockBoard from '../components/ClockBoard.vue'
+import ClockBoard from './ClockBoard.vue'
 </script>
 
 <template>

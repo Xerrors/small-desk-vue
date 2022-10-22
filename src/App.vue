@@ -3,7 +3,7 @@ import { computed, defineAsyncComponent, reactive, shallowRef } from 'vue'
 
 // 需要加载的组件集合
 const components = shallowRef(new Map())
-const component_list = ["ClockBoard", "UpperPage"] // , "AppKit"]
+const component_list = ["DashBoard"] // , "AppKit"]
 const component_time = {
   ClockBoard: 30000,
   DemoPage: 3000,
@@ -27,7 +27,7 @@ const timer = reactive({
 const loadAllComponents = () => {
   for (let i = 0; i < component_list.length; i++) {
     const compName = component_list[i]
-    components.value.set(i, defineAsyncComponent(() => import(`./components/${compName}.vue`)))
+    components.value.set(i, defineAsyncComponent(() => import(`./views/${compName}.vue`)))
   }
 }
 
@@ -66,11 +66,11 @@ timer.timerId = setInterval(switchComp, timer.timerTime)
     </transition> -->
     <component :is="components.get(curComp.compIndex)" class="board"></component>
   </div>
-  <div class="debug auto-flex hide-debug" >
+  <!-- <div class="debug auto-flex hide-debug" >
     <button @click="switchComp('decrease')"> debug1 </button>
     <button @click="stopAutoSwitch"> debug2 </button>
     <button @click="switchComp('increase')"> debug3 </button>
-  </div>
+  </div> -->
   <div class="options">
     <span class="lock" v-if="curComp.stopAutoSwitch">lock</span>
   </div>
