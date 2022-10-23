@@ -10,6 +10,12 @@ const getPastedDays = () => {
 
 const pastedDays = ref(getPastedDays())
 
+// 每隔 1 分钟更新时间和日期
+setInterval(() => {
+  pastedDays.value = getPastedDays()
+}, 1000 * 60)
+
+
 </script>
 
 <template>

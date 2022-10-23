@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue'
+import { onMounted, ref } from 'vue'
 
 // get the current time
 const getTime = () => {
@@ -34,9 +34,22 @@ const getWeek = () => {
   return weekMap[week]
 }
 
+// 每隔一秒更新时间和日期
+const updateTime = () => {
+  time.value = getTime()
+  date.value = getDate()
+  week.value = getWeek()
+}
+
+// get the current time
 const time = ref(getTime())
 const date = ref(getDate())
 const week = ref(getWeek())
+
+// 每隔一秒更新时间和日期
+onMounted(() => {
+  setInterval(updateTime, 1000)
+})
 
 </script>
 
