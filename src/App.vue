@@ -4,9 +4,7 @@ import { useSwipe } from '@vueuse/core'
 
 // 需要加载的组件集合
 const components = shallowRef(new Map())
-const component_list = ["ClockBoard", "UpperPage"] // , "AppKit"]
-const component_keep_alive = ["DemoPage"]
-const component_disable_debug = [] // ["DemoPage"]
+const component_list = ["DashBoard"] // , "AppKit"]
 const component_time = {
   ClockBoard: 30000,
   AppKit: 3000
@@ -30,7 +28,7 @@ const timer = reactive({
 const loadAllComponents = () => {
   for (let i = 0; i < component_list.length; i++) {
     const compName = component_list[i]
-    components.value.set(i, defineAsyncComponent(() => import(`./components/${compName}.vue`)))
+    components.value.set(i, defineAsyncComponent(() => import(`./views/${compName}.vue`)))
   }
 }
 
@@ -83,11 +81,11 @@ timer.timerId = setInterval(switchComp, timer.timerTime)
       <component :is="components.get(curComp.compIndex)" class="board"></component>
     </KeepAlive>
   </div>
-  <div class="debug auto-flex hide-debug" v-if="curComp.enable_debug" ref="debug">
+  <!-- <div class="debug auto-flex hide-debug" >
     <button @click="switchComp('decrease')"> debug1 </button>
     <button @click="stopAutoSwitch"> debug2 </button>
     <button @click="switchComp('increase')"> debug3 </button>
-  </div>
+  </div> -->
   <div class="options">
     <span class="lock" v-if="curComp.stopAutoSwitch">lock</span>
   </div>
