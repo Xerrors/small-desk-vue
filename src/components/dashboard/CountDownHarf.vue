@@ -31,7 +31,7 @@ setInterval(() => {
   flex-direction: column;
   justify-content: space-around;
   font-size: 2rem;
-  color: #c4c4c6;
+  color: #e4e4e4;
 }
 
 .days {

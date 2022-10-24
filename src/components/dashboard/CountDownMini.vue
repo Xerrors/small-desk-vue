@@ -32,7 +32,6 @@ setInterval(() => {
 }
 
 .count-down-mini .number {
-  color: rgb(255, 0, 43);
   font-weight: bold;
 }
 

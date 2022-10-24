@@ -1,6 +1,7 @@
 @import "./base.css";
 @import "./layout.css";
 @import "./style.css";
+@import "./animation.css";
 
 #app {
   -webkit-user-select: none;
