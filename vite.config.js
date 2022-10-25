@@ -12,7 +12,10 @@ export default defineConfig({
     }
   },
   build: {
-    outDir: "../cordova-app/www" // for cordova
+    outDir: "../cordova-app/www", // for cordova
+    // rollupOptions: {
+    //   external: ['cordova', 'cordova/exec', 'src/assets/img/AnyPreciousFlamingo-max-1mb.gif'],
+    // }
   },
   // 配置 vite 的跨域
   server: {

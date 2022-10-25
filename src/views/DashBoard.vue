@@ -14,16 +14,23 @@ const state = reactive({
 
 const curCompName = ref('CountDownHarf');
 const curCompProps = ref({});
+const loadedComp = shallowRef(new Map());
 const curComp = shallowRef(defineAsyncComponent(() => import(`../components/dashboard/${curCompName.value}.vue`)));
 
 const getCurComp = () => {
-  return defineAsyncComponent(() => import(`../components/dashboard/${curCompName.value}.vue`));
+  if (loadedComp.value.has(curCompName.value)) {
+    curComp.value = loadedComp.value.get(curCompName.value);
+  } else {
+    curComp.value = defineAsyncComponent(() => import(`../components/dashboard/${curCompName.value}.vue`));
+    loadedComp.value.set(curCompName.value, curComp.value);
+  }
+  return curComp.value;
 }
 
 const activateComponent = (name, props=null) => {
   curCompName.value = name;
   curCompProps.value = props;
-  curComp.value = getCurComp();
+  getCurComp();
 }
 
 const handlePomodoro = (time) => {
@@ -78,11 +85,12 @@ const debug = () => {
   gap: 1rem;
   width: 100%;
   height: 100%;
+  overflow: hidden;
 }
 
 .first>div,
 .second>div {
-  background-color: var(--vt-c-black);
+  background-color: var(--vt-c-black-mute);
   border-radius: 1rem;
   color: var(--vt-c-white);
   font-size: 1.5rem;
@@ -90,6 +98,7 @@ const debug = () => {
   justify-content: center;
   align-items: center;
   transition: all 0.1s ease-out;
+  overflow: hidden;
 }
 
 .first>div:active {
