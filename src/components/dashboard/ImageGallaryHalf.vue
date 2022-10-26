@@ -14,6 +14,11 @@ const links = ref([
     name: "juan",
     url: "https://xerrors.oss-cn-shanghai.aliyuncs.com/imgs/20221025192943.png",
     type: 'photo'
+  },
+  {
+    name: "juan",
+    url: "https://xerrors.oss-cn-shanghai.aliyuncs.com/imgs/20221026125743.png",
+    type: 'photo'
   }
 ])
 
